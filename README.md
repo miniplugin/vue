@@ -16,6 +16,7 @@
 
 ### 20200405 작업내역(아래)
 
+- Cannot find module 'eslint-plugin-vue' error 때문에 npm install --save-dev eslint@5.16 으로 다운설치.
 - vuetify 패키지 재설치 설치 옵션 (아래)
 - Choose a preset: Configure (advanced)
 - Use a pre-made template? (will replace App.vue and HelloWorld.vue) No //Y로 선택하면 router가 안됨.
