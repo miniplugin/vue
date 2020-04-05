@@ -14,6 +14,19 @@
 
 ---
 
+### 20200405 작업내역(아래)
+
+- vuetify 패키지 재설치 설치 옵션 (아래)
+- Choose a preset: Configure (advanced)
+- Use a pre-made template? (will replace App.vue and HelloWorld.vue) No //Y로 선택하면 router가 안됨.
+- Use custom theme? No
+- Use custom properties (CSS variables)? No
+- Select icon font - Material Icons
+- Use fonts as a dependency (for Electron or offline)? Yes
+- Use a-la-carte components? No
+- Use babel/polyfill? Yes
+- Select locale - Korean
+
 ### 20200403 작업내역(아래)
 
 - firebase init | deploy -> hosting 으로 생성한 Vue 프로젝트 배포.
