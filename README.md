@@ -26,6 +26,12 @@
 - Use a-la-carte components? No
 - Use babel/polyfill? Yes
 - Select locale - Korean
+- firebase login 후 firebase init(한번만 하면됨) 이후는 firebase deploy
+- firebase init 옵션(아래)
+- What do you want to use as your public directory? dist
+- Configure as a single-page app (rewrite all urls to /index.html)? Yes //를 해야지만 vue라우트가 작동함.
+- File dist/index.html already exists. Overwrite? No //주의 Yes하면, Vue에서 작업한 것이 아닌, firebase 초기파일로 덮어 쓰게 됩니다.
+- Skipping write of dist/index.html
 
 ### 20200403 작업내역(아래)
 
