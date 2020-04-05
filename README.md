@@ -2,7 +2,7 @@
 
 ---
 
-- 기술참조: [https://fkkmemi.github.io/talk/vf-000-intro/](https://fkkmemi.github.io/talk/vf-000-intro/)
+- 기술참조: https://fkkmemi.github.io/talk/vf-000-intro/
 - 개발언어: Vue(Javascript 문법 확장판)
 - 개발환경: VSCode IDE사용, vue create . 사용.(npm i -g yarn)
 - 실행환경: yarn serve
