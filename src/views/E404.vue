@@ -1,0 +1,5 @@
+<template>
+  <div class="about">
+    <h1>404 파일을 찾을 수 없습니다.</h1>
+  </div>
+</template>
