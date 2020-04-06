@@ -4,6 +4,7 @@
 
 - 기술참조1: Front-end 간단한 게시판 구현 ( VueJs + Vuetify). https://dollvin.tistory.com/61
 - 기술참조2: Vue와 Firebase로 모던웹사이트 만들기. https://fkkmemi.github.io/talk/vf-000-intro/
+- 기술참조3: 기술참조2의 Git소스. https://github.com/fkkmemi/vf
 - 개발언어: Vue(Javascript 문법 확장판)
 - 개발환경: VSCode IDE사용, vue create . 사용-
 - Vue 프로젝트 설치시 vue-router, vuex 선택 이후 모두 default 선택.
