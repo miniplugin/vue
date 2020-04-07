@@ -12,6 +12,7 @@
 - 실행환경: yarn serve = npm run serve (필요: npm i -g yarn)
 - 배포환경: 구글파이어베이스 firebase deploy(필요:npm install -g firebase-tools)
 - 결과확인링크: https://covid19-kr.web.app/
+- 작업결과소스: https://github.com/miniplugin/vue
 - 같은의미: npm install = yarn install = yarn (package.json 의 의존성 패키지를 node_moudles 폴더에 설치해 준다.)
 
 ---
