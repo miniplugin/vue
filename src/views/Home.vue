@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <v-icon
+      size="200"
+      color="accent"
+    >mdi-vuetify</v-icon>
     <HelloWorld msg="Vue.js App을 사용하는 사이트 입니다." />
   </div>
 </template>
