@@ -2,9 +2,10 @@
 
 ---
 
-- 기술참조1: Front-end 간단한 게시판 구현 ( VueJs + Vuetify). https://dollvin.tistory.com/61
-- 기술참조2: Vue와 Firebase로 모던웹사이트 만들기. https://fkkmemi.github.io/talk/vf-000-intro/
-- 기술참조3: 기술참조2의 Git소스. https://github.com/fkkmemi/vf
+- 기술참조1: https://vuetifyjs.com/ko/components/toolbars/
+- 기술참조2: Front-end 간단한 게시판 구현 ( VueJs + Vuetify). https://dollvin.tistory.com/61
+- 기술참조3: Vue와 Firebase로 모던웹사이트 만들기. https://fkkmemi.github.io/talk/vf-000-intro/
+- 기술참조4: 기술참조3의 Git소스. https://github.com/fkkmemi/vf
 - 개발언어: Vue(Javascript 문법 확장판)
 - 개발환경: VSCode IDE사용, vue create . 사용-
 - Vue 프로젝트 설치시 vue-router, vuex 선택 이후 모두 default 선택.
@@ -14,6 +15,15 @@
 - 같은의미: npm install = yarn install = yarn (package.json 의 의존성 패키지를 node_moudles 폴더에 설치해 준다.)
 
 ---
+
+### 20200407 작업내역(아래)
+
+- vuetify로 툴바 만들기
+- vuetify mdi icons not showing 버그.해결은 index.html에 아래 내용 추가
+
+```
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet" />
+```
 
 ### 20200405 작업내역(아래)
 
