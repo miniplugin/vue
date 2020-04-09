@@ -17,23 +17,44 @@
       </v-toolbar>
       <v-divider></v-divider>
       <v-list>
-        <v-list-item
+        <v-list-group
+          v-for="(item,index) in items"
+          v-bind:key="index"
+          v-model="item.active"
+          :prepend-icon="item.icon"
+          no-action
+        >
+          <v-divider></v-divider>
+          <template v-slot:activator>
+            <!-- <v-list-item
           v-for="(item,index) in items"
           v-bind:key="index"
           v-bind:to="item.url"
-        >
-          <v-list-item-avatar>
-            <v-icon>{{item.icon}}</v-icon>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>{{item.title}}</v-list-item-title>
-          </v-list-item-content>
-          <v-list-item-action>
-            <v-btn icon>
-              <v-icon color="grey lighten-1">mdi-information</v-icon>
-            </v-btn>
-          </v-list-item-action>
-        </v-list-item>
+        > -->
+            <v-list-item>
+              <!-- <v-list-item-avatar>
+                <v-icon>{{item.icon}}</v-icon>
+              </v-list-item-avatar> -->
+              <v-list-item-content>
+                <v-list-item-title>{{item.title}}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </template>
+          <v-list-item
+            v-for="(subItem,index) in item.subItems"
+            v-bind:key="index"
+            v-bind:to="subItem.url"
+          >
+            <v-list-item-content>
+              <v-list-item-title>{{subItem.title}}</v-list-item-title>
+            </v-list-item-content>
+            <v-list-item-action>
+              <v-btn icon>
+                <v-icon color="grey lighten-1">mdi-information</v-icon>
+              </v-btn>
+            </v-list-item-action>
+          </v-list-item>
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
     <v-card>
@@ -47,7 +68,7 @@
             <router-link to="/">Home</router-link>
           </v-btn>
           <v-btn>
-            <router-link to="/about">About</router-link>
+            <router-link to="/lectures/card">Lectures</router-link>
           </v-btn>
         </v-toolbar-items>
         <v-btn icon>
@@ -66,16 +87,36 @@ export default {
   data () {
     return {
       drawer: false,
-      items: [ // javascript object = 2차원배열 형태 = [{key:value},{연관배열},{json형태}...]
+      items: [ // javascript {object} = 2차원배열 형태 = [{key:value},{연관배열},{json형태오브젝트}...]
         {
           icon: 'mdi-home',
           title: 'Home',
-          url: '/'
+          active: true,
+          subItems: [
+            {
+              title: 'Home',
+              url: '/'
+            },
+            {
+              title: 'About',
+              url: '/about'
+            }
+          ]
         },
         {
           icon: 'mdi-information-outline',
-          title: 'About',
-          url: '/about'
+          title: 'Lectures',
+          active: false,
+          subItems: [
+            {
+              title: 'Card',
+              url: '/lectures/card'
+            },
+            {
+              title: 'Layout',
+              url: '/lectures/layout'
+            }
+          ]
         }
       ]
     }

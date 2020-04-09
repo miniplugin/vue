@@ -17,13 +17,17 @@
 
 ---
 
+### 20200409 작업내역(아래)
+
+- vuetify기반 v-list-group > template 태그로 2단 메뉴 만들기
+
 ### 20200408 작업내역(아래)
 
-- 네비게이션 드로어(v-navigation-drawer)로 토글 메뉴 만들기
+- vuetify기반 네비게이션 드로어(v-navigation-drawer)로 토글 메뉴 만들기
 
 ### 20200407 작업내역(아래)
 
-- vuetify로 툴바 만들기
+- vuetify기반 툴바 만들기
 - vuetify mdi icons not showing 버그.해결은 index.html에 아래 내용 추가
 
 ```
@@ -33,7 +37,7 @@
 ### 20200405 작업내역(아래)
 
 - Cannot find module 'eslint-plugin-vue' error 때문에 npm install --save-dev eslint@5.16 으로 다운설치.
-- vuetify 패키지 재설치 설치 옵션 (아래)
+- vuetify css프레임웍 패키지 재설치 설치 옵션 (아래)
 - Choose a preset: Configure (advanced)
 - Use a pre-made template? (will replace App.vue and HelloWorld.vue) No //Y로 선택하면 router가 안됨.
 - Use custom theme? No
