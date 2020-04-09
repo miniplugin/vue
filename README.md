@@ -22,6 +22,7 @@
 - vuetify기반 v-list-group > template 태그로 2단 메뉴 만들기.
 - vuetify기반 v-card 태그로 카드 디자인 만들기.
 - 반응형 레이아웃 구조 만들기: v-container > v-layout > v-flex
+- 반응형에서 보통 xs12 sm6 md4 3개 까지만 지정한다.
 
 ```
 클래스 속성 및 기기별 Viewport 종류
