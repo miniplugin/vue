@@ -19,16 +19,27 @@
 
 ### 20200409 작업내역(아래)
 
-- vuetify기반 v-list-group > template 태그로 2단 메뉴 만들기
+- vuetify기반 v-list-group > template 태그로 2단 메뉴 만들기.
+- vuetify기반 v-card 태그로 카드 디자인 만들기.
+- 반응형 레이아웃 구조 만들기: v-container > v-layout > v-flex
+
+```
+클래스 속성 및 기기별 Viewport 종류
+- Extra small   xs	[mobile]	    < 600px
+- Small	        sm	[tablet/pad]  600px > < 960px
+- Medium	      md	[notebook]	  960px > < 1264px*
+- Large	        lg	[desktop]	    1264px* > < 1904px*
+- Extra large	  xl	[4k ultra-wides monitor]	> 1904px*
+```
 
 ### 20200408 작업내역(아래)
 
-- vuetify기반 네비게이션 드로어(v-navigation-drawer)로 토글 메뉴 만들기
+- vuetify기반 네비게이션 드로어(v-navigation-drawer)로 토글 메뉴 만들기.
 
 ### 20200407 작업내역(아래)
 
 - vuetify기반 툴바 만들기
-- vuetify mdi icons not showing 버그.해결은 index.html에 아래 내용 추가
+- vuetify mdi icons not showing 버그.해결은 index.html에 아래 내용 추가.
 
 ```
 <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet" />

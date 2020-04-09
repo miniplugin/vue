@@ -20,6 +20,18 @@ const routes = [
       import (/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
+    path: '/lectures/card',
+    name: 'Card',
+    component: () =>
+      import (/* webpackChunkName: "card" */ '../views/lectures/Card.vue')
+  },
+  {
+    path: '/lectures/layout',
+    name: 'Layout',
+    component: () =>
+      import (/* webpackChunkName: "card" */ '../views/lectures/Layout.vue')
+  },
+  {
     path: '*',
     name: 'E404',
     component: () => import (/* E404 File Not Found */ '../views/E404.vue')

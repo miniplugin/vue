@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="about ma-4">
     <h1>뷰Vue 사이트에 관해서</h1>
     <v-alert
       class="primary"
