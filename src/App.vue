@@ -115,6 +115,10 @@ export default {
             {
               title: 'Layout',
               url: '/lectures/layout'
+            },
+            {
+              title: 'Notes',
+              url: '/lectures/notes'
             }
           ]
         }

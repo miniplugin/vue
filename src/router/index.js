@@ -32,6 +32,12 @@ const routes = [
       import (/* webpackChunkName: "card" */ '../views/lectures/Layout.vue')
   },
   {
+    path: '/lectures/notes',
+    name: 'Notes',
+    component: () =>
+      import (/* webpackChunkName: "notes" */ '../views/lectures/Notes.vue')
+  },
+  {
     path: '*',
     name: 'E404',
     component: () => import (/* E404 File Not Found */ '../views/E404.vue')
