@@ -17,6 +17,11 @@
 
 ---
 
+### 20200411 작업내역(아래)
+
+- firebase 파이어스토어 DB Config file 로 원격 DB(몽고DB처럼 NoSql) 접근 확인.
+- /firebaseConfig.js 파일 생성 후 .gitignore 민감정보 제외 설정.
+
 ### 20200410 작업내역(아래)
 
 - vue 에서 동기(기본) 과 비동기(async > await) 함수 차이 확인.
