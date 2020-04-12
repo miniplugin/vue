@@ -3,9 +3,9 @@
     fluid
     grid-list-md
   >
-    <v-flex xs12>
+    <!-- <v-flex xs12>
       {{itemsPerPage}} // 페이지 변수 내용 확인
-    </v-flex>
+    </v-flex> -->
     <v-layout>
       <v-flex xs5>
         <v-text-field
@@ -27,20 +27,20 @@
       </v-flex>
     </v-layout>
     <v-data-iterator
-      content-tag="tag"
       row
       wrap
       :items="items"
       :items-per-page.sync="itemsPerPage"
       :page="page"
-      :sort-by="sortBy.toLowerCase()"
       :sort-desc="sortDesc"
+      :sort-by="sortBy.toLowerCase()"
     >
       <template v-slot:item="props">
         <v-flex xs12>
           <v-card>
             <v-card-title>
-              <h4>{{props.item.id}} - {{props.item.title}}</h4>
+              <h3>{{props.item.title}}</h3>
+              (작성일 : {{ props.item.rdate }})
             </v-card-title>
             <v-divider></v-divider>
             <v-card-text>
@@ -48,7 +48,8 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn @click="del(props.item)">삭제</v-btn>
+              <v-btn @click="put(props.item.id)">수정</v-btn>
+              <v-btn @click="del(props.item.id)">삭제</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -65,39 +66,78 @@ export default {
     itemsPerPage: 5,
     items: [],
     sortDesc: true,
-    sortBy: 'id',
-    id: 2,
+    sortBy: 'rdate',
+    // id: 0, // firebase collection id 사용
     title: '',
-    content: ''
+    content: '',
+    rdate: ''
   }),
   mounted () {
-    this.items.push({
+    /* this.items.push({
       id: 1, title: '제목1', content: '내용1'
     })
     this.items.push({
       id: 2, title: '제목2', content: '내용2'
+    }) */
+    /* this.$firebase.firestore().collection('notes').add({
+      id: 1, title: '제목1', content: '내용1'
     })
+    this.$firebase.firestore().collection('notes').add({
+      id: 2, title: '제목2', content: '내용2'
+    }) */
+    this.get()
   },
   methods: {
-    post () {
+    async post () {
       // 등록
-      this.id = this.id + 1
+      // this.id = this.id + 1
+      /*
       this.items.push({
         id: this.id, title: this.title, content: this.content
+      }) */
+      // const today = new Date()
+      const today = this.$moment(new Date()).format('YYYY-MM-DD, HH:mm:ss') // am,pm표시는 맨끝에 a 추가
+      const r = await this.$firebase.firestore().collection('notes').add({
+        title: this.title, content: this.content, rdate: today // firebase 컬렉션 id 사용 id: this.id
       })
+      console.log('post', r)
+      await this.get()
       this.title = ''
       this.content = ''
     },
-    get () {
+    async get () {
       // 조회
+      const snapshot = await this.$firebase.firestore().collection('notes').get()
+      this.items = []
+      snapshot.forEach(v => {
+        // console.log('v.id', v.id)
+        const { title, content, rdate } = v.data()
+        // console.log('rdate', v.data().rdate.seconds)
+        // const today = this.$moment(v.data().rdate.seconds).format('YYYY-MM-DD, HH:mm:ss')
+        // console.log('today', today)
+        this.items.push({
+          title, content, rdate, id: v.id
+        })
+      })
+      // console.log('snapshot', snapshot)
     },
-    put () {
-      // 수정
+    async put (id) {
+      // 수정 doc(id).set 은 기존 자료 삭제 후 재등록 .update 가 해당 항목만 수정.
+      const r = await this.$firebase.firestore().collection('notes').doc(id).update({
+        title: this.title, content: this.content
+      })
+      await this.get()
+      console.log('update', r)
+      this.title = ''
+      this.content = ''
     },
-    del (item) {
+    async del (id) {
       // 삭제
-      const index = this.items.indexOf(item)
-      this.items.splice(index, 1)
+      // const index = this.items.indexOf(id)
+      // this.items.splice(index, 1)
+      const r = await this.$firebase.firestore().collection('notes').doc(id).delete()
+      await this.get()
+      console.log('delete', r)
     }
   }
 }

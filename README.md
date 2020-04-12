@@ -17,9 +17,39 @@
 
 ---
 
+### 20200412 작업내역(아래)
+
+- firebase 파이어스토어 DB에 CRUD 구현.
+- 뷰-모먼트 모듈사용(아래 소스코드)
+
+```javascript
+// main.js
+import VueMoment from 'vue-moment' // npm install --save vue-moment
+Vue.use(VueMoment) // 사용예, https://codesandbox.io/s/k9v3qjvq73
+```
+
+```javascript
+// Notes.vue
+methods: {
+    async post () {
+      // 등록
+      const today = this.$moment(new Date()).format('YYYY-MM-DD, HH:mm:ss')
+      const r = await this.$firebase.firestore().collection('notes').add({ // DB입력 add 매서드
+        title: this.title, content: this.content, rdate: today // firebase 컬렉션 자동생성 id 사용
+      })
+      console.log('post', r)
+      await this.get() // 비동기 - 순서대로 출력용.
+      this.title = ''
+      this.content = ''
+    },
+    ...
+}
+```
+
 ### 20200411 작업내역(아래)
 
 - firebase 파이어스토어 DB Config file 로 원격 DB(몽고DB처럼 NoSql) 접근 확인.
+- npm install --save firebase
 - /firebaseConfig.js 파일 생성 후 .gitignore 민감정보 제외 설정.
 
 ### 20200410 작업내역(아래)

@@ -21,9 +21,11 @@ import firebaseConfig from '../../firebaseConfig'
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 // 파이어스토어 작동 확인 테스트
-firebase
+/* firebase
   .firestore()
   .collection('test')
   .add({ test: 'aaa' })
   .then(r => console.log(r))
-  .catch(e => console.error(e))
+  .catch(e => console.error(e)) */
+
+Vue.prototype.$firebase = firebase
