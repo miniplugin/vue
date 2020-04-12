@@ -46,6 +46,8 @@ methods: {
 }
 ```
 
+- 작업예정: firebase 인증(auth)로 로그인 구현.
+
 ### 20200411 작업내역(아래)
 
 - firebase 파이어스토어 DB Config file 로 원격 DB(몽고DB처럼 NoSql) 접근 확인.
