@@ -19,7 +19,7 @@
 
 ### 20200412 작업내역(아래)
 
-- firebase 파이어스토어 DB에 CRUD 구현.
+- firebase 파이어스토어 DB에 CRUD 구현(결과URL: https://covid19-kr.web.app/lectures/notes ).
 - 뷰-모먼트 모듈사용(아래 소스코드)
 
 ```javascript

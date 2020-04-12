@@ -95,6 +95,10 @@ export default {
       this.items.push({
         id: this.id, title: this.title, content: this.content
       }) */
+      if (this.title === '' || this.content === '') {
+        alert('빈 값을 저장 할 수 없습니다.')
+        return false
+      }
       // const today = new Date()
       const today = this.$moment(new Date()).format('YYYY-MM-DD, HH:mm:ss') // am,pm표시는 맨끝에 a 추가
       const r = await this.$firebase.firestore().collection('notes').add({
@@ -122,6 +126,10 @@ export default {
       // console.log('snapshot', snapshot)
     },
     async put (id) {
+      if (this.title === '' || this.content === '') {
+        alert('빈 값을 수정 할 수 없습니다.')
+        return false
+      }
       // 수정 doc(id).set 은 기존 자료 삭제 후 재등록 .update 가 해당 항목만 수정.
       const r = await this.$firebase.firestore().collection('notes').doc(id).update({
         title: this.title, content: this.content
