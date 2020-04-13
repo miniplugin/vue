@@ -17,6 +17,10 @@
 
 ---
 
+### 20200413 작업내역(아래)
+
+- firebase Authentication 에 구글 인증 구현. ( plugins/firebase.js > import 'firebase/auth' )
+
 ### 20200412 작업내역(아래)
 
 - firebase 파이어스토어 DB에 CRUD 구현(결과URL: https://covid19-kr.web.app/lectures/notes ).
