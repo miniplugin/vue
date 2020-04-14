@@ -11,6 +11,7 @@
 - Vue 프로젝트 설치시 vue-router, vuex 선택 이후 모두 default 선택.
 - 실행환경: yarn serve = npm run serve (필요: npm i -g yarn)
 - 배포환경: 구글파이어베이스 firebase deploy(필요:npm install -g firebase-tools)
+- firebase 가이드: https://firebase.google.com/docs/guides?authuser=0
 - 결과확인링크: https://covid19-kr.web.app/
 - 작업결과소스: https://github.com/miniplugin/vue
 - 같은의미: npm install = yarn install = yarn (package.json 의 의존성 패키지를 node_moudles 폴더에 설치해 준다.)
@@ -19,14 +20,23 @@
 
 ### 20200414 작업내역(아래)
 
+- 로그인 인증 처리 전 nodejs 백엔드 서비스 구현.
+- firebase 에서는 functions 에서 백엔드 서버로 nodejs를 기본으로 제공한다.
 - firebase functions (=nodejs서버) 설치 후 백엔드 코드 구현. ( firebase init functions 설치 )
 - 백엔드 API 서버 실행: 아래 ( firebase emulators:start --only functions )
 - http://localhost:5001/covid19-kr/us-central1/helloWorld
 - 크롬 RESTFul api툴 부메랑 확장프로그램 설치 ( Boomerang ) 및 RESTFul api CRUD 확인.
+- 에러페이지 표시 모듈 사용 (npm install --save vue-toasted) 매번 try ~ catch 사용할 필요 없음.
 
 ### 20200413 작업내역(아래)
 
 - firebase Authentication 에 구글 인증 구현. ( plugins/firebase.js > import 'firebase/auth' )
+- 구글 console firebase 사이트에서 Database 규칙 인증 후 read, write 변경(아래)
+
+```
+  //allow read, write: if request.time < timestamp.date(2020, 5, 11);
+  allow read, write: if request.auth.uid != null;
+```
 
 ### 20200412 작업내역(아래)
 

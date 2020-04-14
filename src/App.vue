@@ -119,6 +119,10 @@ export default {
             {
               title: 'Notes',
               url: '/lectures/notes'
+            },
+            {
+              title: 'Axios',
+              url: '/lectures/axios'
             }
           ]
         }
