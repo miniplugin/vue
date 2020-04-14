@@ -5,6 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "login": "firebase login",
+    "logout": "firebase logout",
+    "deploy": "firebase deploy",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
