@@ -17,6 +17,13 @@
 
 ---
 
+### 20200414 작업내역(아래)
+
+- firebase functions (=nodejs서버) 설치 후 백엔드 코드 구현. ( firebase init functions 설치 )
+- 백엔드 API 서버 실행: 아래 ( firebase emulators:start --only functions )
+- http://localhost:5001/covid19-kr/us-central1/helloWorld
+- 크롬 RESTFul api툴 부메랑 확장프로그램 설치 ( Boomerang ) 및 RESTFul api CRUD 확인.
+
 ### 20200413 작업내역(아래)
 
 - firebase Authentication 에 구글 인증 구현. ( plugins/firebase.js > import 'firebase/auth' )
