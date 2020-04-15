@@ -123,6 +123,10 @@ export default {
             {
               title: 'Axios',
               url: '/lectures/axios'
+            },
+            {
+              title: 'Mother',
+              url: '/lectures/mother'
             }
           ]
         }

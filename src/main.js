@@ -16,6 +16,10 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.config.productionTip = false
 
+// 전역변수 사용 테스트
+const global = 'not login'
+Vue.prototype.$global = global
+
 // testPromise.foo() // 동기와 비동기 사용 예
 Vue.use(VueMoment) // 사용예, https://codesandbox.io/s/k9v3qjvq73
 

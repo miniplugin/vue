@@ -3,12 +3,18 @@
 const app = express() */
 const app = require('express')()
 const cors = require('cors')
+require('express-async-errors')
 
-// CORS 문제 처리
+// 미들웨어: CORS 문제 처리
 app.use(cors())
+// 미들웨어: 로그인 인증 처리
+app.use(require('../middlewares/verifyToken'))
 
 // RESTFul API CRUD
-app.post('/', (req, res) => {
+app.post('/', async (req, res) => {
+  /* const a = 3
+  if (a === 3) throw Error('access denied') */
+  // console.log(JSON.stringify(req.headers))
   res.send('post ok')
 })
 app.get('/', (req, res) => {
@@ -23,4 +29,8 @@ app.put('/:id', (req, res) => {
 app.delete('/:id', (req, res) => {
   res.send('delete ok ' + req.params.id)
 })
+
+// 미들웨어: 에러처리
+app.use(require('../middlewares/error'))
+
 module.exports = app

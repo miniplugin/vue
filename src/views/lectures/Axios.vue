@@ -118,27 +118,27 @@ export default {
     async create () {
       // this.$toasted.show('hello toasted')
       // this.$toasted.global.error('잘못된 정보입니다.')
-      const r = await this.$axios.post('https://us-central1-covid19-kr.cloudfunctions.net/test/wef')
+      const r = await this.$axios.post('test')
       this.textCreate = r.data
     },
     async read () {
-      /* this.$axios.get('http://localhost:5001/covid19-kr/us-central1/test/1234')
+      /* this.$axios.get('https://us-central1-covid19-kr.cloudfunctions.net/test/1234')
         .then(r => { this.textRead = r.data })
         .catch(e => console.error(e.message)) */
       try {
-        const r = await this.$axios.get('https://us-central1-covid19-kr.cloudfunctions.net/test/1234')
+        const r = await this.$axios.get('test/1234')
         this.textRead = r.data
       } catch (e) {
         console.error(e.message)
       }
     },
     update () {
-      this.$axios.put('https://us-central1-covid19-kr.cloudfunctions.net/test/1234')
+      this.$axios.put('test/1234')
         .then(r => { this.textUpdate = r.data })
         .catch(e => console.error(e.message))
     },
     del () {
-      this.$axios.delete('https://us-central1-covid19-kr.cloudfunctions.net/test/1234')
+      this.$axios.delete('test/1234')
         .then(r => { this.textDelete = r.data })
         .catch(e => console.error(e.message))
     }

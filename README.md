@@ -2,7 +2,8 @@
 
 ---
 
-- 기술참조1: https://vuetifyjs.com/ko/components/toolbars/
+- 기술참조 Vuejs: https://kr.vuejs.org/v2/guide/components.html
+- 기술참조 Vuetify: https://vuetifyjs.com/ko/components/toolbars/
 - 기술참조2: Front-end 간단한 게시판 구현 ( VueJs + Vuetify). https://dollvin.tistory.com/61
 - 기술참조3: Vue와 Firebase로 모던웹사이트 만들기. https://fkkmemi.github.io/talk/vf-000-intro/
 - 기술참조4: 기술참조3의 Git소스. https://github.com/fkkmemi/vf
@@ -17,6 +18,16 @@
 - 같은의미: npm install = yarn install = yarn (package.json 의 의존성 패키지를 node_moudles 폴더에 설치해 준다.)
 
 ---
+
+### 20200415 작업내역(아래)
+
+- 로그인 인증 처리 전 전역변수(상태변이) 기술 테스트.
+- HTTP상태코드 내역 ( http://developer.mozilla.org/ko/docs/Web/HTTP/Status )
+- 노드 express 에러 wrap 처리.( functions폴더 > npm install express-async-errors --save )
+- require('express-async-errors') 사용법: https://www.npmjs.com/package/express-async-errors
+- 미들웨어(node서버와 클라이언트사이)로 헤더값을 인터셉터 하는 방법: https://github.com/axios/axios
+- firebase store(아래) - firebase init 때 functions 와 store 선택 ( /src/store/index.js 자동생성 )
+- vuex: 뷰 템플릿 상태 관리 ( https://vuex.vuejs.org/kr/ ) - 로그인처리에 사용예정.(상태-변이-액션)
 
 ### 20200414 작업내역(아래)
 
@@ -41,7 +52,7 @@
 ### 20200412 작업내역(아래)
 
 - firebase 파이어스토어 DB에 CRUD 구현(결과URL: https://covid19-kr.web.app/lectures/notes ).
-- 뷰-모먼트 모듈사용(아래 소스코드)
+- 날짜관련 뷰-모먼트 모듈사용(아래 소스코드)
 
 ```javascript
 // main.js

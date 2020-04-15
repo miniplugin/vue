@@ -50,6 +50,12 @@ const routes = [
       import (/* webpackChunkName: "axios" */ '../views/lectures/Axios.vue')
   },
   {
+    path: '/lectures/mother',
+    name: 'Mother',
+    component: () =>
+      import (/* webpackChunkName: "mother" */ '../views/lectures/Mother.vue')
+  },
+  {
     path: '*',
     name: 'E404',
     component: () => import (/* E404 File Not Found */ '../views/E404.vue')
