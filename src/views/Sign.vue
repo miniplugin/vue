@@ -32,6 +32,13 @@
         <v-icon>mdi-google</v-icon>
         구글로그인
       </v-btn>
+      <v-btn
+        color="primary"
+        @click="signOut"
+      >
+        <v-icon>mdi-logout</v-icon>
+        로그아웃
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -48,7 +55,11 @@ export default {
     async signInWithGoogle () {
       var provider = new this.$firebase.auth.GoogleAuthProvider()
       this.$firebase.auth().languageCode = 'ko'
-      const r = await this.$firebase.auth().signInWithPopup(provider)
+      await this.$firebase.auth().signInWithPopup(provider)
+      // console.log(r)
+    },
+    async signOut () {
+      const r = await this.$firebase.auth().signOut()
       console.log(r)
     }/* ,
     async signInEmail () {

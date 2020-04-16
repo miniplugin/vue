@@ -13,11 +13,28 @@
 - 실행환경: yarn serve = npm run serve (필요: npm i -g yarn)
 - 배포환경: 구글파이어베이스 firebase deploy(필요:npm install -g firebase-tools)
 - firebase 가이드: https://firebase.google.com/docs/guides?authuser=0
+- plugins/axios.js 에서 로컬과 클라우드용 node서버 지정.(firebase functions는 노드js서버 기본설치됨.)
 - 결과확인링크: https://covid19-kr.web.app/
 - 작업결과소스: https://github.com/miniplugin/vue
 - 같은의미: npm install = yarn install = yarn (package.json 의 의존성 패키지를 node_moudles 폴더에 설치해 준다.)
 
 ---
+
+### 20200416 작업내역(아래)
+
+- firebase인증(구글로그인) 인증 과 vuex 전역변수(상태변이) 통합 테스트.
+- console firebase Database 접근설정변경
+
+```
+allow read;
+allow write: if request.auth.uid != null;
+```
+
+- 게시판 로그인 인증 처리 OK.(수정한 파일들-아래)
+- plugins/firebase.js ( 구글인증 hook 전 처리 onAuthStateChanged )
+- store/index.js ( vuex 미들웨어로 로그인 user 와 token 전역변수 처리 )
+- App.vue ( 상단에 vue조건 v-if="\$store.state.user" 으로 보이기, 숨기기 )
+- /vies/lectures/Notes.vue 게시판 vue조건에 따라 쓰기/수정 보이기, 숨기기 )
 
 ### 20200415 작업내역(아래)
 

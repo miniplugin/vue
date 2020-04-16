@@ -61,8 +61,25 @@
       <v-toolbar color="lime">
         <!-- v-on:click="test" = @click="test" -->
         <v-app-bar-nav-icon @click="navDrawer"></v-app-bar-nav-icon>
-        <v-toolbar-title>Vue 앱</v-toolbar-title>
+        <v-toolbar-title>Vue 앱 [{{$store.state.user ? $store.state.user.displayName : '비 로그인'}}]</v-toolbar-title>
+        <!-- <v-toolbar-title>토큰[{{$store.state.token}}]</v-toolbar-title> -->
         <v-spacer></v-spacer>
+        <v-btn
+          v-if="$store.state.user"
+          color="primary"
+          @click="signOut"
+        >
+          <v-icon>mdi-logout</v-icon>
+          로그아웃
+        </v-btn>
+        <v-btn
+          v-else
+          color="primary"
+          @click="signInWithGoogle"
+        >
+          <v-icon>mdi-logout</v-icon>
+          로그인
+        </v-btn>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn>
             <router-link to="/">Home</router-link>
@@ -137,6 +154,16 @@ export default {
     navDrawer () {
       console.log('navDrawer 클릭')
       this.drawer = !this.drawer
+    },
+    async signInWithGoogle () {
+      var provider = new this.$firebase.auth.GoogleAuthProvider()
+      this.$firebase.auth().languageCode = 'ko'
+      await this.$firebase.auth().signInWithPopup(provider)
+      // console.log(r)
+    },
+    async signOut () {
+      const r = await this.$firebase.auth().signOut()
+      console.log('logout: ', r)
     }
   }
 }

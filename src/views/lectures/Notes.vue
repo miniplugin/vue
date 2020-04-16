@@ -6,7 +6,7 @@
     <!-- <v-flex xs12>
       {{itemsPerPage}} // 페이지 변수 내용 확인
     </v-flex> -->
-    <v-layout>
+    <v-layout v-if="$store.state.user">
       <v-flex xs5>
         <v-text-field
           v-model="title"
@@ -46,7 +46,7 @@
             <v-card-text>
               {{props.item.content}}
             </v-card-text>
-            <v-card-actions>
+            <v-card-actions v-if="$store.state.user">
               <v-spacer></v-spacer>
               <v-btn @click="put(props.item.id)">수정</v-btn>
               <v-btn @click="del(props.item.id)">삭제</v-btn>

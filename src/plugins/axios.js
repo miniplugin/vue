@@ -2,10 +2,11 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-// 로컬테스트 http://localhost:5001/covid19-kr/us-central1/
-// 실제배포서버: https://us-central1-covid19-kr.cloudfunctions.net/
+var localUrl = 'http://localhost:5001/covid19-kr/us-central1/'
+var cloudUrl = 'https://us-central1-covid19-kr.cloudfunctions.net/'
+
 const firebaseAPI = axios.create({
-  baseURL: 'https://us-central1-covid19-kr.cloudfunctions.net/',
+  baseURL: cloudUrl,
   timeout: 5000,
   headers: { 'X-Custom-Header': 'foobar' }
 })
