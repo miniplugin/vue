@@ -7,6 +7,7 @@ import 'firebase/auth'
 import 'firebase/firestore'
 import firebaseConfig from '../../firebaseConfig'
 import store from '../store'
+import router from '../router'
 // TODO: Replace the following with your app's Firebase project configuration
 
 /* const firebaseConfig = {
@@ -32,16 +33,21 @@ firebase.initializeApp(firebaseConfig)
 Vue.prototype.$firebase = firebase
 
 // 파이어베이스 auth() 인증 훅 hook
+// Vue.prototype.$isFirebaseAuth = false // 전역변수 처리
 // firebase.auth().onAuthStateChanged(function (user) {
 firebase.auth().onAuthStateChanged(user => {
+  // Vue.prototype.$isFirebaseAuth = true
   // console.log('user: ', user)
   // store>index.js 에서 mutations 사용
   // store.commit('setUser', user)
   // store>index.js 에서 actions 사용
   store.dispatch('getUser', user)
+  // 비공개 사이트 처리시(아래)
   if (user) {
     // 로그인 시 처리
+    // router.push('/')
   } else {
     // 비 로그인시 처리
+    // router.push('/sign')
   }
 })

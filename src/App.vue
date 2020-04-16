@@ -58,7 +58,10 @@
       </v-list>
     </v-navigation-drawer>
     <v-card>
-      <v-toolbar color="lime">
+      <v-toolbar
+        color="indigo"
+        dark
+      >
         <!-- v-on:click="test" = @click="test" -->
         <v-app-bar-nav-icon @click="navDrawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Vue 앱 [{{$store.state.user ? $store.state.user.displayName : '비 로그인'}}]</v-toolbar-title>
@@ -78,7 +81,7 @@
           @click="signInWithGoogle"
         >
           <v-icon>mdi-google</v-icon>
-          구글 로그인
+          로그인
         </v-btn>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn>
@@ -88,17 +91,48 @@
             <router-link to="/lectures/card">Lectures</router-link>
           </v-btn>
         </v-toolbar-items>
-        <v-btn icon>
+        <v-btn
+          icon
+          @click="signOut"
+        >
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
       </v-toolbar>
     </v-card>
     <v-content>
+      <vue-progress-bar></vue-progress-bar>
+      <v-container
+        grid-list-md
+        v-if="$isFirebaseAuth"
+      >
+        <v-layout
+          row
+          wrap
+          align-center
+          justify-center
+        >
+          <v-card
+            color="transparent"
+            flat
+          >
+            <v-card-text class="text-xs-center">
+              <v-progress-circular
+                indeterminate
+                color="primary"
+              ></v-progress-circular>
+            </v-card-text>
+            <v-card-text class="text-xs-center">
+              로딩 중 입니다.
+            </v-card-text>
+          </v-card>
+        </v-layout>
+      </v-container>
       <router-view />
     </v-content>
   </v-app>
 </template>
 <script>
+import router from './router'
 export default {
   name: 'App',
   data () {
@@ -156,9 +190,10 @@ export default {
       this.drawer = !this.drawer
     },
     async signInWithGoogle () {
-      var provider = new this.$firebase.auth.GoogleAuthProvider()
+      router.push('/sign')
+      /* var provider = new this.$firebase.auth.GoogleAuthProvider()
       this.$firebase.auth().languageCode = 'ko'
-      await this.$firebase.auth().signInWithPopup(provider)
+      await this.$firebase.auth().signInWithPopup(provider) */
       // console.log(r)
     },
     async signOut () {

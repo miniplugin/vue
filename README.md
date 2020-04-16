@@ -24,6 +24,7 @@
 
 - firebase인증(구글로그인) 인증 과 vuex 전역변수(상태변이) 통합 테스트.
 - console firebase Database 접근설정변경
+- vue router 로 로그인 후 접근 제어 하기 : https://router.vuejs.org/kr/
 
 ```
 allow read;
@@ -36,6 +37,8 @@ allow write: if request.auth.uid != null;
 - App.vue ( 상단에 vue조건 v-if="\$store.state.user" 으로 보이기, 숨기기 )
 - /vies/lectures/Notes.vue 게시판 vue조건에 따라 쓰기/수정 보이기, 숨기기 )
 - 작업예정: 로그은 후 권한별 처리 사항 적용예정.(지금은 로그인인증만 되면 누구나 게시판에 작성가능)
+- 프로그래방식 라우팅 사용으로 로그인 후 이동 페이지 지정. 기다리는 동안 vue-progressbar 사용
+- npm install vue-progressbar --save
 
 ### 20200415 작업내역(아래)
 

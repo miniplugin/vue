@@ -5,8 +5,10 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import firebase from './plugins/firebase'
-import './plugins/axios'
-import './plugins/vue_toasted'
+/* import './plugins/axios'
+import './plugins/vue_toasted' */
+// 위 3개 import 를 1개로 처리(아래)
+import './plugins'
 import './error'
 import VueMoment from 'vue-moment' // npm install --save vue-moment
 import '@babel/polyfill'
