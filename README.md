@@ -35,6 +35,7 @@ allow write: if request.auth.uid != null;
 - store/index.js ( vuex 미들웨어로 로그인 user 와 token 전역변수 처리 )
 - App.vue ( 상단에 vue조건 v-if="\$store.state.user" 으로 보이기, 숨기기 )
 - /vies/lectures/Notes.vue 게시판 vue조건에 따라 쓰기/수정 보이기, 숨기기 )
+- 작업예정: 로그은 후 권한별 처리 사항 적용예정.(지금은 로그인인증만 되면 누구나 게시판에 작성가능)
 
 ### 20200415 작업내역(아래)
 
