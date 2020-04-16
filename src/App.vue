@@ -77,8 +77,8 @@
           color="primary"
           @click="signInWithGoogle"
         >
-          <v-icon>mdi-logout</v-icon>
-          로그인
+          <v-icon>mdi-google</v-icon>
+          구글 로그인
         </v-btn>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn>
