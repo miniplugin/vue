@@ -39,6 +39,7 @@ allow write: if request.auth.uid != null;
 - 작업예정: 로그은 후 권한별 처리 사항 적용예정.(지금은 로그인인증만 되면 누구나 게시판에 작성가능)
 - 프로그래방식 라우팅 사용으로 로그인 후 이동 페이지 지정. 기다리는 동안 vue-progressbar 사용
 - npm install vue-progressbar --save
+- Navigating to current location ... is not allowed 문제 처리 예정.
 
 ### 20200415 작업내역(아래)
 
