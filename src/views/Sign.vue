@@ -20,8 +20,14 @@
         xs12
         sm7
       >
-        <sign-in v-if="type"></sign-in>
-        <sign-up v-else></sign-up>
+        <sign-in
+          v-if="type"
+          @changeType="type = !type"
+        ></sign-in>
+        <sign-up
+          v-else
+          @changeType="type = !type"
+        ></sign-up>
         <!-- <v-card>
           <v-card-title>
             로그인

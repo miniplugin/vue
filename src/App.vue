@@ -67,22 +67,6 @@
         <v-toolbar-title>Vue 앱 [{{$store.state.user ? $store.state.user.displayName : '비 로그인'}}]</v-toolbar-title>
         <!-- <v-toolbar-title>토큰[{{$store.state.token}}]</v-toolbar-title> -->
         <v-spacer></v-spacer>
-        <v-btn
-          v-if="$store.state.user"
-          color="primary"
-          @click="signOut"
-        >
-          <v-icon>mdi-logout</v-icon>
-          로그아웃
-        </v-btn>
-        <v-btn
-          v-else
-          color="primary"
-          @click="signInWithGoogle"
-        >
-          <v-icon>mdi-google</v-icon>
-          로그인
-        </v-btn>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn>
             <router-link to="/">Home</router-link>
@@ -91,12 +75,87 @@
             <router-link to="/lectures/card">Lectures</router-link>
           </v-btn>
         </v-toolbar-items>
-        <v-btn
-          icon
-          @click="signOut"
-        >
-          <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn
+              icon
+              v-on="on"
+              v-if="!$store.state.user"
+            >
+              <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+            <v-btn
+              icon
+              v-on="on"
+              v-else
+            >
+              <v-avatar
+                size="38"
+                color="grey lighten-4"
+              >
+                <img
+                  :src="$store.state.user.photoURL"
+                  alt="avatar"
+                >
+              </v-avatar>
+            </v-btn>
+          </template>
+          <v-card width="320">
+            <v-container grid-list-md>
+              <v-layout
+                row
+                wrap
+                v-if="$store.state.user"
+              >
+                <v-flex xs4>
+                  <v-avatar
+                    size="74"
+                    color="grey lighten-4"
+                  >
+                    <img
+                      :src="$store.state.user.photoURL"
+                      alt="avatar"
+                    >
+                  </v-avatar>
+                </v-flex>
+                <v-flex xs8>
+                  <v-card-text>
+                    <span class="font-weight-bold">{{$store.state.user.displayName}}</span>
+                    <br>
+                    <span>{{$store.state.user.email}}</span>
+                  </v-card-text>
+                  <v-divider></v-divider>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="success"
+                      @click="signOut"
+                    >
+                      <v-icon>mdi-logout</v-icon>
+                      로그아웃
+                    </v-btn>
+                  </v-card-actions>
+                </v-flex>
+              </v-layout>
+              <v-layout
+                v-else
+                row
+                wrap
+                align-center
+                justify-center
+              >
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="primary"
+                  @click="signInWithGoogle"
+                >
+                  <v-icon>mdi-login</v-icon>
+                  로그인
+                </v-btn>
+              </v-layout>
+            </v-container>
+          </v-card>
+        </v-menu>
       </v-toolbar>
     </v-card>
     <v-content>

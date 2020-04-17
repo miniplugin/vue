@@ -1,8 +1,14 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+/* eslint-disable semi */
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../views/Home.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
+// Navigating to current location is not allowed 에러처리
+const routerPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push (location) {
+  return routerPush.call(this, location).catch(error => error);
+};
 
 const routes = [
   {
@@ -64,13 +70,13 @@ const routes = [
     name: 'E404',
     component: () => import (/* E404 File Not Found */ '../views/E404.vue')
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 // router/index.js 의 $isFirebaseAuth 전역변수가 true 일 때 beforeEach 매서드로 라우터 진행 처리
 // 인증 받지 않는 사용자 라우팅 원천 봉쇄 (비공개 사이트 처리 시 사용)
 /* router.beforeEach((to, form, next) => {
@@ -78,18 +84,18 @@ const router = new VueRouter({
   if (Vue.prototype.$isFirebaseAuth) next()
 }) */
 router.beforeEach((to, form, next) => {
-  Vue.prototype.$isFirebaseAuth = true
-  console.log('bf each', Vue.prototype.$isFirebaseAuth)
-  Vue.prototype.$Progress.start()
-  next()
+  Vue.prototype.$isFirebaseAuth = true;
+  console.log('bf each', Vue.prototype.$isFirebaseAuth);
+  Vue.prototype.$Progress.start();
+  next();
   /* setTimeout(() => { // 일부러 시간 지연시켜서 로딩 상황 확인
     next()
   }, 2000) */
-})
+});
 router.afterEach((to, form) => {
-  Vue.prototype.$isFirebaseAuth = false
-  console.log('af each', Vue.prototype.$isFirebaseAuth)
-  Vue.prototype.$Progress.finish()
-})
+  Vue.prototype.$isFirebaseAuth = false;
+  console.log('af each', Vue.prototype.$isFirebaseAuth);
+  Vue.prototype.$Progress.finish();
+});
 
-export default router
+export default router;

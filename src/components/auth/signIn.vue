@@ -8,7 +8,7 @@
       <v-card-title primary-title>
         <span class="title">로그인</span>
         <v-spacer></v-spacer>
-        <span class="caption">또는&nbsp;<a>회원가입</a></span>
+        <span class="caption">또는&nbsp;<a @click="$emit('changeType')">회원가입</a></span>
       </v-card-title>
       <v-card-actions>
         <v-btn
@@ -49,12 +49,14 @@
       <v-card-text>
         <v-text-field
           label="email"
-          v-model="email"
+          v-model="form.email"
+          :rules="[rule.required, rule.minLength(7),rule.maxLength(50), rule.email]"
         >
         </v-text-field>
         <v-text-field
           label="password"
-          v-model="password"
+          v-model="form.password"
+          :rules="[rule.required, rule.minLength(6),rule.maxLength(50)]"
           type="password"
         >
         </v-text-field>
@@ -66,6 +68,7 @@
         <v-btn
           color="primary"
           @click="signInEmail"
+          :disabled="!valid"
         >
           <v-icon>mdi-email</v-icon>
           메일로그인
@@ -94,9 +97,18 @@ import router from '../../router'
 export default {
   data () {
     return {
-      valid: false,
-      email: '',
-      password: ''
+      valid: true, // true false 나 같은 결과.
+      form: {
+        email: '',
+        password: ''
+      },
+      rule: {
+        required: v => !!v || '필수 입력값 입니다.',
+        minLength: length => v => v.length >= length || '입력값은 ' + length + '글자 이상 이여야 합니다.',
+        maxLength: length => v => v.length <= length || '입력값은 ' + length + '글자 이하 이여야 합니다.',
+        email: v => /.+@.+/.test(v) || '이메일 형식이 필요합니다.',
+        agree: v => !!v || '약관에 동의해야 합니다.'
+      }
     }
   },
   methods: {
@@ -108,7 +120,10 @@ export default {
       router.push('/')
     },
     async signInEmail () {
-      alert('현재는 구글 로그인만 지원 합니다.')
+      if (!this.$refs.form.validate()) {
+        return this.$toasted.global.error('입력 폼에 올바른 값을 작성해 주세요.')
+      }
+      alert('준비중 입니다.')
       // const r = await this.$firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
       // console.log(r)
     }/* ,
