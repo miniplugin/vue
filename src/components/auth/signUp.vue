@@ -83,7 +83,7 @@
         <v-spacer></v-spacer>
         <v-btn
           color="primary"
-          @click="signInEmail"
+          @click="signUpEmail"
           :disabled="!valid"
         >
           <v-icon>mdi-email</v-icon>
@@ -109,7 +109,7 @@
 }
 </style>
 <script>
-// import router from '../../router'
+import router from '../../router'
 export default {
   data () {
     return {
@@ -131,17 +131,29 @@ export default {
     }
   },
   methods: {
-    signInWithGoogle () {
-      var routeData = 'http://www.google.co.kr/accounts?hl=ko'
-      window.open(routeData, '_blank')
+    async signInWithGoogle () {
+      /* var routeData = 'http://www.google.co.kr/accounts?hl=ko'
+      window.open(routeData, '_blank') */
+      var provider = new this.$firebase.auth.GoogleAuthProvider()
+      this.$firebase.auth().languageCode = 'ko'
+      await this.$firebase.auth().signInWithPopup(provider)
+      // console.log(r)
+      router.push('/')
     },
-    async signInEmail () {
+    async signUpEmail () {
       if (!this.$refs.form.validate()) {
         return this.$toasted.global.error('입력 폼에 올바른 값을 작성해 주세요.')
       }
-      alert('준비중 입니다.')
-      // const r = await this.$firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-      // console.log(r)
+      // alert('준비중 입니다.') const r =
+      await this.$firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
+      // console.log('signUpEmail', r)
+      const user = this.$firebase.auth().currentUser
+      const result = await user.updateProfile({
+        displayName: this.form.firstname + this.form.lastname,
+        photoURL: 'http://webassets.dothome.co.kr/metro/image/small_logo.png'
+      })
+      await console.log('result', result)
+      router.push('/')
     }/* ,
     async signOut () {
       const r = await this.$firebase.auth().signOut()

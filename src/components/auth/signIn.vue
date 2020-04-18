@@ -123,9 +123,10 @@ export default {
       if (!this.$refs.form.validate()) {
         return this.$toasted.global.error('입력 폼에 올바른 값을 작성해 주세요.')
       }
-      alert('준비중 입니다.')
-      // const r = await this.$firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-      // console.log(r)
+      // alert('준비중 입니다.')
+      const r = await this.$firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
+      console.log('signInEmail', r)
+      router.push('/')
     }/* ,
     async signOut () {
       const r = await this.$firebase.auth().signOut()

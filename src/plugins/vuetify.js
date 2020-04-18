@@ -11,6 +11,6 @@ export default new Vuetify({
     current: 'ko'
   },
   icons: {
-    iconfont: 'md'
+    iconfont: 'mdi'
   }
 })

@@ -9,14 +9,14 @@
         속성 app: 화면크기에 맞게 네비크기 조정 속성
         속성 v-model: 화면에 토글 액션으로 보여주기/숨기기 drawer(true/false)
       -->
-      <v-toolbar
+      <v-app-bar
         flat
         color="trasparent"
       >
         <v-toolbar-title>메뉴</v-toolbar-title>
-      </v-toolbar>
+      </v-app-bar>
       <v-divider></v-divider>
-      <v-list>
+      <v-list nav>
         <v-list-group
           v-for="(item,index) in items"
           v-bind:key="index"
@@ -58,13 +58,19 @@
       </v-list>
     </v-navigation-drawer>
     <v-card>
-      <v-toolbar
+      <v-app-bar
         color="indigo"
         dark
       >
         <!-- v-on:click="test" = @click="test" -->
         <v-app-bar-nav-icon @click="navDrawer"></v-app-bar-nav-icon>
-        <v-toolbar-title>Vue 앱 [{{$store.state.user ? $store.state.user.displayName : '비 로그인'}}]</v-toolbar-title>
+        <v-toolbar-title>
+          Vue 앱 [{{$store.state.user ? $store.state.user.displayName : '비 로그인'}}]
+          <span
+            class="caption"
+            v-if="$store.state.user"
+          >[관리자 인증: {{$store.state.user.emailVerified}}]</span>
+        </v-toolbar-title>
         <!-- <v-toolbar-title>토큰[{{$store.state.token}}]</v-toolbar-title> -->
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
@@ -156,7 +162,7 @@
             </v-container>
           </v-card>
         </v-menu>
-      </v-toolbar>
+      </v-app-bar>
     </v-card>
     <v-content>
       <vue-progress-bar></vue-progress-bar>
