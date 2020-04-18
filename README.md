@@ -7,8 +7,8 @@
 - 기술참조2: Front-end 간단한 게시판 구현 ( VueJs + Vuetify). https://dollvin.tistory.com/61
 - 기술참조3: Vue와 Firebase로 모던웹사이트 만들기. https://fkkmemi.github.io/talk/vf-000-intro/
 - 기술참조4: 기술참조3의 Git소스. https://github.com/fkkmemi/vf
-- 개발언어: Vue(Javascript 문법 확장판)
-- 개발환경: VSCode IDE사용, vue create . 사용-
+- 개발언어: VueJs(Javascript 문법 확장판) + Vuetify 버전2.2.11(메이저.마이너.릴리즈)
+- 개발환경: VSCode IDE사용, vue create . 사용-(기술참조3의 vuetify 1.5 -> vuetify 2.x 로 작업됨)
 - Vue 프로젝트 설치시 vue-router, vuex 선택 이후 모두 default 선택.
 - 실행환경: yarn serve = npm run serve (필요: npm i -g yarn)
 - 배포환경: 구글파이어베이스 firebase deploy(필요:npm install -g firebase-tools)
@@ -19,6 +19,13 @@
 - 같은의미: npm install = yarn install = yarn (package.json 의 의존성 패키지를 node_moudles 폴더에 설치해 준다.)
 
 ---
+
+### 20200418 작업내역(아래)
+
+- firebase Authentication 으로 이메일 가입 후 로그인 처리.
+- 이메일 가입 메서드: this.\$firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
+- 로그인 메서드: await this.\$firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
+- 작업미결: emailVerified: false 를 true로 처리.
 
 ### 20200417 작업내역(아래)
 
