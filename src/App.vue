@@ -69,7 +69,7 @@
           <span
             class="caption"
             v-if="$store.state.user"
-          >[관리자 인증: {{$store.state.user.emailVerified}}]</span>
+          >[이메일 인증: {{$store.state.user.emailVerified}} | 사용자 레벨: {{$store.state.claims.level}}]</span>
         </v-toolbar-title>
         <!-- <v-toolbar-title>토큰[{{$store.state.token}}]</v-toolbar-title> -->
         <v-spacer></v-spacer>

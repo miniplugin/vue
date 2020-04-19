@@ -116,6 +116,7 @@ export default {
       var provider = new this.$firebase.auth.GoogleAuthProvider()
       this.$firebase.auth().languageCode = 'ko'
       await this.$firebase.auth().signInWithPopup(provider)
+      await this.$firebase.auth().currentUser.getIdToken(true)
       // console.log(r)
       router.push('/')
     },

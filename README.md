@@ -20,12 +20,39 @@
 
 ---
 
+### 20200419 작업내역(아래)
+
+- emailVerified: false 를 true로 처리 -> firebase Admin 기능으로 대체
+
+```
+ cd functions
+ firebase functions:config:set admin.email=kimilguk@knou.ac.kr
+ firebase functions:config:get > .runtimeconfig.json // 로컬 노드js서버에서 필요
+```
+
+- functions/index.js -> const admin = require('firebase-admin')
+
+```
+// 트리거 생성
+exports.createUser = functions.auth.user().onCreate(user => {
+  const set = { level: 2 }
+  if (functions.config().admin.email === user.email && user.emailVerified) {
+    set.level = 0
+  }
+  admin.auth().setCustomUserClaims(user.uid, set).then(() => {
+    //  새로운 사용자 지정 클레임은 다음에 새 토큰이 발급 될 때 사용자의 ID 토큰으로 전파됩니다.
+  })
+```
+
+- 사용자 지정 권한을 클라이언트 로그인 토큰(claims)으로 확인 해 보기: jwt.io 에서 토큰 내용 확인
+- 작업예정: 사용자 지정 권한을 노드서버API에서 claims 값으로 가져오기.
+
 ### 20200418 작업내역(아래)
 
 - firebase Authentication 으로 이메일 가입 후 로그인 처리.
 - 이메일 가입 메서드: this.\$firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
 - 로그인 메서드: await this.\$firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
-- 작업미결: emailVerified: false 를 true로 처리.
+- 작업미결: emailVerified: false 를 true로 처리. -> firebase Admin 기능으로 대체
 
 ### 20200417 작업내역(아래)
 

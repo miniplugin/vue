@@ -137,6 +137,7 @@ export default {
       var provider = new this.$firebase.auth.GoogleAuthProvider()
       this.$firebase.auth().languageCode = 'ko'
       await this.$firebase.auth().signInWithPopup(provider)
+      await this.$firebase.auth().currentUser.getIdToken(true)
       // console.log(r)
       router.push('/')
     },
@@ -152,6 +153,7 @@ export default {
         displayName: this.form.firstname + this.form.lastname,
         photoURL: 'http://webassets.dothome.co.kr/metro/image/small_logo.png'
       })
+      await this.$firebase.auth().currentUser.getIdToken(true)
       await console.log('result', result)
       router.push('/')
     }/* ,

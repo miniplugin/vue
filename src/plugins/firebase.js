@@ -41,13 +41,17 @@ firebase.auth().onAuthStateChanged(user => {
   // store>index.js 에서 mutations 사용
   // store.commit('setUser', user)
   // store>index.js 에서 actions 사용
-  store.dispatch('getUser', user)
-  // 비공개 사이트 처리시(아래)
-  if (user) {
-    // 로그인 시 처리
-    // router.push('/')
-  } else {
-    // 비 로그인시 처리
-    // router.push('/sign')
-  }
+  store.dispatch('getUser', user).then(() => {
+    // 비공개 사이트 처리시(아래)
+    if (user) {
+      // 로그인 시 처리
+      // console.log('user-firebase.js : ', user)
+      // router.push('/')
+      // 레벨 처리
+      // console.log('claims-firebase.js : ', store.state.claims)
+    } else {
+      // 비 로그인시 처리
+      // router.push('/sign')
+    }
+  })
 })
