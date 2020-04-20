@@ -20,6 +20,61 @@
 
 ---
 
+### 20200420 작업내역(아래)
+
+- firebase Authentication 회원등록을 파이어베이스 DB에 저장 및 삭제연동.
+- src/router/index.js : Vue.prototype.\$isFirebaseAuth -> store.state.firebaseLoaded 대신 사용.
+
+```
+
+const levelCheck = (to, from, next) => {
+  console.log('store.state.claims', store.state.claims);
+  // console.log('store.state.claims.level', store.state.claims.level);
+  if (store.state.claims === null) {
+    next();
+  } else if (store.state.claims.level === undefined) {
+    firebase.auth().signOut();
+    next('/userProfile');
+  } else {
+    next();
+  }
+};
+
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
+    beforeEnter: levelCheck
+  },
+  ----------------------
+
+// store.state.firebaseLoaded 인증값이 넘어오려면 시간이 필요
+const waitFirebase = () => {
+  return new Promise((resolve, reject) => {
+    let cnt = 0;
+    const tmr = setInterval(() => {
+      if (store.state.firebaseLoaded) {
+        clearInterval(tmr);
+        resolve();
+      } else if (cnt++ > 200) {
+        clearInterval(tmr);
+        PromiseRejectionEvent(Error('파이어베이스 로드가 안되었습니다.'));
+      }
+    }, 10);
+  });
+};
+router.beforeEach((to, form, next) => {
+  Vue.prototype.$Progress.start();
+  waitFirebase()
+    .then(() => next())
+    .catch(e => Vue.prototype.$toasted.global.error(e.message));
+});
+router.afterEach((to, form) => {
+  Vue.prototype.$Progress.finish();
+});
+```
+
 ### 20200419 작업내역(아래)
 
 - emailVerified: false 를 true로 처리 -> firebase Admin 기능으로 대체

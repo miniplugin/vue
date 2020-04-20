@@ -35,7 +35,10 @@
           <v-flex xs5>
             <v-divider class="mt-2"></v-divider>
           </v-flex>
-          <v-flex xs2>
+          <v-flex
+            xs2
+            text-center
+          >
             또는
           </v-flex>
           <v-flex
@@ -94,6 +97,7 @@
 </style>
 <script>
 import router from '../../router'
+// import store from '../../store'
 export default {
   data () {
     return {
@@ -116,9 +120,14 @@ export default {
       var provider = new this.$firebase.auth.GoogleAuthProvider()
       this.$firebase.auth().languageCode = 'ko'
       await this.$firebase.auth().signInWithPopup(provider)
-      await this.$firebase.auth().currentUser.getIdToken(true)
+      // await this.$firebase.auth().currentUser.getIdToken(true) // 회원가입 즉시 토큰을 재발생 시키지 않는다.
       // console.log(r)
+      /* if (store.state.claims.level === undefined) {
+        await this.$firebase.auth().signOut()
+        router.push('/userPfofile')
+      } else { */
       router.push('/')
+      // }
     },
     async signInEmail () {
       if (!this.$refs.form.validate()) {

@@ -69,7 +69,7 @@
           <span
             class="caption"
             v-if="$store.state.user"
-          >[이메일 인증: {{$store.state.user.emailVerified}} | 사용자 레벨: {{$store.state.claims.level}}]</span>
+          >[이메일 인증: {{$store.state.user.emailVerified}}<span v-if="$store.state.claims"> | 사용자 레벨: {{$store.state.claims.level}}]</span></span>
         </v-toolbar-title>
         <!-- <v-toolbar-title>토큰[{{$store.state.token}}]</v-toolbar-title> -->
         <v-spacer></v-spacer>
@@ -127,6 +127,9 @@
                 <v-flex xs8>
                   <v-card-text>
                     <span class="font-weight-bold">{{$store.state.user.displayName}}</span>
+                    <span class="font-weight-bold">
+                      <router-link v-bind:to="'/userProfile'">[프로필]</router-link>
+                    </span>
                     <br>
                     <span>{{$store.state.user.email}}</span>
                   </v-card-text>
@@ -168,8 +171,9 @@
       <vue-progress-bar></vue-progress-bar>
       <v-container
         grid-list-md
-        v-if="$isFirebaseAuth"
+        v-if="!$store.state.firebaseLoaded"
       >
+        <!-- v-if="$isFirebaseAuth" -->
         <v-layout
           row
           wrap
@@ -262,6 +266,7 @@ export default {
       // console.log(r)
     },
     async signOut () {
+      this.$store.state.claims = null
       const r = await this.$firebase.auth().signOut()
       console.log('logout: ', r)
     }

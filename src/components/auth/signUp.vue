@@ -35,7 +35,10 @@
           <v-flex xs5>
             <v-divider class="mt-2"></v-divider>
           </v-flex>
-          <v-flex xs2>
+          <v-flex
+            xs2
+            text-center
+          >
             또는
           </v-flex>
           <v-flex
@@ -137,7 +140,7 @@ export default {
       var provider = new this.$firebase.auth.GoogleAuthProvider()
       this.$firebase.auth().languageCode = 'ko'
       await this.$firebase.auth().signInWithPopup(provider)
-      await this.$firebase.auth().currentUser.getIdToken(true)
+      // await this.$firebase.auth().currentUser.getIdToken(true) // 회원가입 즉시 토큰을 재발생 시키지 않는다.
       // console.log(r)
       router.push('/')
     },
@@ -153,7 +156,7 @@ export default {
         displayName: this.form.firstname + this.form.lastname,
         photoURL: 'http://webassets.dothome.co.kr/metro/image/small_logo.png'
       })
-      await this.$firebase.auth().currentUser.getIdToken(true)
+      // await this.$firebase.auth().currentUser.getIdToken(true) // 회원가입 즉시 토큰을 재발생 시키지 않는다.
       await console.log('result', result)
       router.push('/')
     }/* ,

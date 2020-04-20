@@ -1,7 +1,9 @@
 /* eslint-disable semi */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '../store';
 import Home from '../views/Home.vue';
+import * as firebase from 'firebase/app';
 
 Vue.use(VueRouter);
 // Navigating to current location is not allowed 에러처리
@@ -10,15 +12,32 @@ VueRouter.prototype.push = function push (location) {
   return routerPush.call(this, location).catch(error => error);
 };
 
+const levelCheck = (to, from, next) => {
+  console.log('store.state.claims', store.state.claims);
+  // console.log('store.state.claims.level', store.state.claims.level);
+  if (store.state.claims === null) {
+    next();
+  } else if (store.state.claims.level === undefined) {
+    store.state.claims = null;
+    firebase.auth().signOut();
+    next('/userProfile');
+  } else {
+    next();
+  }
+};
+
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
-    /* beforeEnter: (to, from, next) => { // 인증 받지 않는 사용자 라우팅 원천 봉쇄 (비공개 사이트 처리 시 사용)
-      console.log('bf enter')
-      next()
-    } */
+    component: Home,
+    beforeEnter: levelCheck
+  },
+  {
+    path: '/userProfile',
+    name: 'userProfile',
+    component: () =>
+      import (/* webpackChunkName: "userProfile" */ '../views/userProfile.vue')
   },
   {
     path: '/sign',
@@ -83,18 +102,38 @@ const router = new VueRouter({
   console.log('bf each')
   if (Vue.prototype.$isFirebaseAuth) next()
 }) */
+
+// store.state.firebaseLoaded 인증값이 넘어오려면 시간이 필요
+const waitFirebase = () => {
+  return new Promise((resolve, reject) => {
+    let cnt = 0;
+    const tmr = setInterval(() => {
+      if (store.state.firebaseLoaded) {
+        clearInterval(tmr);
+        resolve();
+      } else if (cnt++ > 200) {
+        clearInterval(tmr);
+        PromiseRejectionEvent(Error('파이어베이스 로드가 안되었습니다.'));
+      }
+    }, 10);
+  });
+};
+
 router.beforeEach((to, form, next) => {
-  Vue.prototype.$isFirebaseAuth = true;
-  console.log('bf each', Vue.prototype.$isFirebaseAuth);
+  // Vue.prototype.$isFirebaseAuth = true; // store.state.firebaseLoaded 사용
+  // console.log('bf each', Vue.prototype.$isFirebaseAuth);
   Vue.prototype.$Progress.start();
-  next();
+  // if (store.state.firebaseLoaded) { next(); } 작동오류
+  waitFirebase()
+    .then(() => next())
+    .catch(e => Vue.prototype.$toasted.global.error(e.message));
   /* setTimeout(() => { // 일부러 시간 지연시켜서 로딩 상황 확인
     next()
   }, 2000) */
 });
 router.afterEach((to, form) => {
-  Vue.prototype.$isFirebaseAuth = false;
-  console.log('af each', Vue.prototype.$isFirebaseAuth);
+  // Vue.prototype.$isFirebaseAuth = false; // store.state.firebaseLoaded 사용
+  // console.log('af each', Vue.prototype.$isFirebaseAuth);
   Vue.prototype.$Progress.finish();
 });
 

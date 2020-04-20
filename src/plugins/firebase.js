@@ -42,7 +42,7 @@ firebase.auth().onAuthStateChanged(user => {
   // store.commit('setUser', user)
   // store>index.js 에서 actions 사용
   store.dispatch('getUser', user).then(() => {
-    // 비공개 사이트 처리시(아래)
+    // 비공개 사이트 처리시 사용자 지정 라우터 사용(아래) -> sr/router 에서 대체 사용.
     if (user) {
       // 로그인 시 처리
       // console.log('user-firebase.js : ', user)
